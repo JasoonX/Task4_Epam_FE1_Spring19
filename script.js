@@ -29,7 +29,7 @@ class Shape {
       this.y -= this.moveY;
     }
   }
-  draw(context,index){
+  draw(context, index) {
     context.font = "10px Arial";
     context.shadowColor = '#FFFFFF';
     context.shadowBlur = 20;
@@ -53,7 +53,7 @@ class Circle extends Shape {
       Math.PI, false);
     context.fillStyle = this.color;
     context.fill();
-    super.draw(context,index);
+    super.draw(context, index);
 
   }
   changeDirection(canvas) {
@@ -81,7 +81,7 @@ class Square extends Shape {
   draw(context, index) {
     context.fillStyle = this.color;
     context.fillRect(this.x - this.edge / 2, this.y - this.edge / 2, this.edge, this.edge);
-    super.draw(context,index);
+    super.draw(context, index);
   }
   changeDirection(canvas) {
     if (this.x + this.edge / 2 > canvas.width || this.x - this.edge / 2 < 0) {
@@ -144,7 +144,7 @@ let canvas = document.getElementById("canvas");
 canvas.width = window.innerWidth * 0.9;
 canvas.height = window.innerHeight * 0.8;
 let game = new Game();
-game.renderField(); 
+game.renderField();
 
 window.addEventListener('resize', function (e) {
   let resizeTimer;
