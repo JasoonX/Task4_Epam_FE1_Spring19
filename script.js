@@ -125,7 +125,7 @@ class Game {
       let shape = this.pickShape(Square.amount, Circle.amount);
       shape.draw(this.context);
       this.shapes.push(shape);
-    }, 2000);
+    }, 5000);
     this.moveShapes();
   }
   moveShapes() {
