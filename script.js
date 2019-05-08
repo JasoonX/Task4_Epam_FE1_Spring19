@@ -24,7 +24,7 @@ class Shape {
     } else if (this.directionX && !this.directionY) {
       this.x += this.moveX;
       this.y -= this.moveY;
-    } else if (!this.directionX && !this.directionY) {
+    } else {
       this.x -= this.moveX;
       this.y -= this.moveY;
     }
@@ -39,17 +39,16 @@ class Shape {
 class Circle extends Shape {
   constructor(radius) {
     super(radius);
-    this.radius = radius;
   }
   getArea() {
-    return this.radius * this.radius * Math.PI;
+    return this.halfedge * this.halfedge * Math.PI;
   }
   static incrementAmount() {
     Circle.amount++;
   }
   draw(context, index) {
     context.beginPath();
-    context.arc(this.x, this.y, this.radius, 0, 2 *
+    context.arc(this.x, this.y, this.halfedge, 0, 2 *
       Math.PI, false);
     context.fillStyle = this.color;
     context.fill();
@@ -57,10 +56,10 @@ class Circle extends Shape {
 
   }
   changeDirection(canvas) {
-    if (this.x + this.radius >= canvas.width || this.x - this.radius < 0) {
+    if (this.x + this.halfedge >= canvas.width || this.x - this.halfedge < 0) {
       this.directionX = !this.directionX;
     }
-    if (this.y + this.radius >= canvas.height || this.y - this.radius < 0) {
+    if (this.y + this.halfedge >= canvas.height || this.y - this.halfedge < 0) {
       this.directionY = !this.directionY;
     }
   }
@@ -118,7 +117,7 @@ class Game {
 
   renderField() {
     this.newShapeInterval = setInterval(() => {
-      if (Circle.amount >= 10 && Square.amount >= 10) {
+      if (Circle.amount === 10 && Square.amount === 10) {
         clearInterval(this.newShapeInterval);
         return;
       }
